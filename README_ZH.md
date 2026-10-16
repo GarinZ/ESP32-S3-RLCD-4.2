@@ -12,7 +12,7 @@
     <a href="https://github.com/waveshareteam/ESP32-S3-RLCD-4.2/releases/latest">📦 固件</a> &middot;
     <a href="examples/esp-idf/">🧩 ESP-IDF</a> &middot;
     <a href="examples/arduino/examples/">🔧 Arduino</a> &middot;
-    <a href="https://docs.waveshare.com/ESP32-S3-RLCD-4.2">📚 文档</a>
+    <a href="https://docs.waveshare.net/ESP32-S3-RLCD-4.2/">📚 文档</a>
   </p>
   <p><img src="docs/images/esp32-s3-rlcd-4.2.webp" alt="ESP32-S3-RLCD-4.2 开发板" width="500"></p>
 </div>
@@ -91,12 +91,12 @@ ESPHome 配置位于 [`examples/esphome`](examples/esphome/README_ZH.md)，小�
 ## 📚 资料
 
 - [产品页面](https://www.waveshare.com/esp32-s3-rlcd-4.2.htm)
-- [Wiki](https://docs.waveshare.com/ESP32-S3-RLCD-4.2)（原理图、引脚图和教程）
+- [Wiki](https://docs.waveshare.net/ESP32-S3-RLCD-4.2/)（原理图、引脚图和教程）
 
 ## 🤝 支持
 
-- 示例或仓库问题：[提交 issue](https://github.com/waveshareteam/ESP32-S3-RLCD-4.2/issues/new/choose)。
-- 产品使用、硬件或订单问题：[微雪技术支持](https://service.waveshare.com/)。
+- 示例或仓库问题：[提交 issue](https://gitee.com/waveshare/ESP32-S3-RLCD-4.2/issues)。
+- 产品使用、硬件或订单问题：[微雪技术支持](https://docs.waveshare.net/ESP32-S3-RLCD-4.2/Technical-Support/)。
 
 ## 📄 许可证
 
