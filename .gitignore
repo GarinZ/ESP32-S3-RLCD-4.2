@@ -20,3 +20,7 @@ release-dist/
 .roo/
 .cline/
 .aider*
+
+# 本项目本地开发配套（不入库）
+reference/
+.pi/

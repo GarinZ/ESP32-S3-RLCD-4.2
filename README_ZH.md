@@ -101,3 +101,14 @@ ESPHome 配置位于 [`examples/esphome`](examples/esphome/README_ZH.md)，小�
 ## 📄 许可证
 
 Apache License 2.0，详见 [LICENSE](LICENSE)。
+
+## 🛠️ 本地开发说明
+
+除上游示例（`examples/`）外，本仓库还包含本项目自身的开发配套：
+
+| 路径 | 说明 |
+| --- | --- |
+| `AGENTS.md` | AI 协作开发约定（环境版本、硬件信息、文档索引） |
+| `doc/` | Waveshare 官方 wiki 文档导出（含图片），可用 `doc/_export.py` 重新同步 |
+| `scripts/` | 开发环境脚本（WSL USB 透传、usbipd-win 开机自动 attach、计划任务注册） |
+| `reference/` | 上游仓库的本地浅克隆，仅作本地参考，不入库（见 `.gitignore`） |
