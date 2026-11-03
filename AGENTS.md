@@ -35,6 +35,7 @@
 | [doc/05-xiaozhi-ai.md](doc/05-xiaozhi-ai.md) | 小智 AI 应用教程（无/有开发环境烧录固件） | https://docs.waveshare.net/ESP32-S3-RLCD-4.2/XiaoZhi_AI |
 | [doc/06-faq.md](doc/06-faq.md) | 产品 FAQ（电池、功耗、RTC 电池、烧录失败、环境搭建等） | https://docs.waveshare.net/ESP32-S3-RLCD-4.2/FAQ |
 | [doc/07-technical-support.md](doc/07-technical-support.md) | 技术支持 / 售后联系方式 | https://docs.waveshare.net/ESP32-S3-RLCD-4.2/Technical-Support |
+| [doc/08-ai-tutorials.md](doc/08-ai-tutorials.md) | AI 应用教程入口（小智 AI / OpenClaw / ESP-Claw 索引、小智适配型号与固件版本表） | https://docs.waveshare.net/ESP32-S3-RLCD-4.2/ESP32-AI-Tutorials |
 
 ## 关键外部资源
 

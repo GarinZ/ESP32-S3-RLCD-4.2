@@ -12,7 +12,7 @@
 >
 > 本文以 **ESP32-S3-Touch-AMOLED-1.8** 开发板为例进行演示，若使用其他开发板，操作步骤类似。
 >
-> 请先确认你的硬件在 **[小智 AI 适配产品列表](https://docs.waveshare.net/ESP32-S3-RLCD-4.2/ESP32-AI-Tutorials#xiaozhi-supported-products)** 中。
+> 请先确认你的硬件在 **[小智 AI 适配产品列表](08-ai-tutorials.md#xiaozhi-supported-products)** 中。
 
 ![XiaozhiAI-Process](https://www.waveshare.net/w/upload/d/d1/XiaozhiAI-09.png)
 
@@ -50,14 +50,14 @@
 
 ### **2.3 配置编译**
 
-1. 点击 ![VSCode 选择目标设备图标](assets/VSCode----------15981.webp) 选择目标设备，根据您的开发板选择对应的芯片型号（如 `esp32s3`）：
+1. 点击 ![VSCode 选择目标设备图标](assets/vscode-select-target-device.webp) 选择目标设备，根据您的开发板选择对应的芯片型号（如 `esp32s3`）：
 
-   ![VS Code 选择设备芯片选项](assets/VS-Code----------25242.webp)
+   ![VS Code 选择设备芯片选项](assets/vscode-select-chip.webp)
 
    > **提示**
    >
    > 设置目标设备时，ESP-IDF 会自动配置相应的工具链和库，此过程可能需要一些时间，请耐心等待。更多详情请参阅 [官方文档](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/api-guides/tools/idf-py.html#set-target)。
-2. 点击 ![VSCode 终端按钮](assets/VSCode------22897.webp) 打开 ESP-IDF 终端，执行 `idf.py menuconfig` 命令进入配置界面，选择 **Xiaozhi Assistant**:
+2. 点击 ![VSCode 终端按钮](assets/vscode-terminal.webp) 打开 ESP-IDF 终端，执行 `idf.py menuconfig` 命令进入配置界面，选择 **Xiaozhi Assistant**:
 
    ![进入终端配置界面](assets/xiaozhi-2-c0ac83b8d762854bd835b15c57999464.webp)
 3. 选择 **Board Type** 进入开发板类型选择：
@@ -107,7 +107,7 @@
 
 问：目前哪些产品已适配小智？
 
-请查看 [小智 AI 适配产品列表](https://docs.waveshare.net/ESP32-S3-RLCD-4.2/ESP32-AI-Tutorials#xiaozhi-supported-products)。
+请查看 [小智 AI 适配产品列表](08-ai-tutorials.md#xiaozhi-supported-products)。
 
 问：不插入 SD 卡可以进行小智对话吗？
 

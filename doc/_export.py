@@ -25,6 +25,7 @@ PAGES = [
     ("/ESP32-S3-RLCD-4.2/XiaoZhi_AI", "05-xiaozhi-ai.md"),
     ("/ESP32-S3-RLCD-4.2/FAQ", "06-faq.md"),
     ("/ESP32-S3-RLCD-4.2/Technical-Support", "07-technical-support.md"),
+    ("/ESP32-S3-RLCD-4.2/ESP32-AI-Tutorials", "08-ai-tutorials.md"),
 ]
 
 LINK_MAP = {p: f for p, f in PAGES}
@@ -32,7 +33,17 @@ LINK_MAP = {p: f for p, f in PAGES}
 SORTED_PATHS = sorted(LINK_MAP, key=len, reverse=True)
 
 
-_DATA_URI_COUNTER = 0
+# data-URI icons are named by content hash (see save_data_uri); this map gives
+# the known ones a readable name. Re-runs are therefore byte-identical.
+DATA_URI_NAMES = {
+    "f3413a7a": "vscode-extension-icon",
+    "e055bd34": "vscode-select-target-device",
+    "cb2a049e": "vscode-select-chip",
+    "abba9adf": "vscode-terminal",
+    "7c67fad9": "xiaozhi-build-flash-icon",
+    "17bca501": "xiaozhi-add-device",
+    "367822e0": "xiaozhi-add-device-code",
+}
 
 
 def fetch(url):
@@ -63,6 +74,18 @@ def download(url):
         return None
 
 
+def cell_text(cell):
+    """Extract cell text, preserving <a> as markdown links."""
+    for a in cell.find_all("a"):
+        href = a.get("href")
+        text = a.get_text(" ", strip=True)
+        if href:
+            if href.startswith("/") and not href.startswith("//"):
+                href = urljoin(BASE, href)
+            a.replace_with(f"[{text}]({href})")
+    return cell.get_text(" ", strip=True)
+
+
 def convert_table(table, soup, idx, tables):
     """Convert a bs4 <table> to GFM markdown, register placeholder."""
     rows = []
@@ -70,11 +93,11 @@ def convert_table(table, soup, idx, tables):
     thead = table.find("thead")
     if thead:
         for th in thead.find_all(["th", "td"]):
-            header.append(th.get_text(" ", strip=True))
+            header.append(cell_text(th))
     # colspan aware (simple): pad headers
     body_rows = table.find("tbody") or table
     for tr in body_rows.find_all("tr"):
-        cells = [c.get_text(" ", strip=True) for c in tr.find_all(["th", "td"])]
+        cells = [cell_text(c) for c in tr.find_all(["th", "td"])]
         if cells:
             rows.append(cells)
     ncol = max([len(header)] + [len(r) for r in rows]) if rows else len(header)
@@ -128,10 +151,13 @@ def fix_headings(article):
 
 
 def save_data_uri(img):
-    """Decode a data: URI image to a file, return local rel path or None."""
+    """Decode a data: URI image to a file, return local rel path or None.
+
+    Files are named by content hash so repeated exports are byte-identical;
+    known UI icons get a readable name from DATA_URI_NAMES.
+    """
     import base64
-    global _DATA_URI_COUNTER
-    _DATA_URI_COUNTER += 1
+    import hashlib
     src = img.get("src") or ""
     m = re.match(r"data:(image/[a-zA-Z0-9.+-]+);base64,(.*)", src, re.S)
     if not m:
@@ -140,14 +166,18 @@ def save_data_uri(img):
     ext = "." + mime.split("/")[-1].replace("jpeg", "jpg")
     if ext not in (".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"):
         ext = ".bin"
-    alt = re.sub(r"[^a-zA-Z0-9._-]", "-", img.get("alt") or "").strip("-")[:60]
-    stem = alt or "icon"
-    fname = f"{stem}-{_DATA_URI_COUNTER}{ext}"
+    try:
+        data = base64.b64decode(b64)
+    except Exception as e:  # noqa: BLE001
+        print(f"    !! data uri decode failed: {e}", file=sys.stderr)
+        return None
+    h8 = hashlib.sha1(data).hexdigest()[:8]
+    fname = f"{DATA_URI_NAMES.get(h8, 'icon-' + h8)}{ext}"
     dest = os.path.join(ASSET_DIR, fname)
     try:
         if not os.path.exists(dest):
             with open(dest, "wb") as f:
-                f.write(base64.b64decode(b64))
+                f.write(data)
         return f"assets/{fname}"
     except Exception as e:  # noqa: BLE001
         print(f"    !! data uri failed: {e}", file=sys.stderr)
